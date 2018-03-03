@@ -228,9 +228,9 @@ void InitNonuniformCatmullRom(float x0, float x1, float x2, float x3, float dt0,
 
 void InitCentripetalCR(const Vector3& p0, const Vector3& p1, const Vector3& p2, const Vector3& p3, float cX[4], float cY[4], float cZ[4] )
 {
-    float dt0 = powf((p0-p1).LengthSquared(), 0.25f);
-    float dt1 = powf((p1-p2).LengthSquared(), 0.25f);
-    float dt2 = powf((p2-p3).LengthSquared(), 0.25f);
+    float dt0 = powf((p0-p1).LengthSquared(), 0.5f*0.5f);
+    float dt1 = powf((p1-p2).LengthSquared(), 0.5f*0.5f);
+    float dt2 = powf((p2-p3).LengthSquared(), 0.5f*0.5f);
 
     // safety check for repeated points
     if (dt1 < 1e-4f)    dt1 = 1.0f;

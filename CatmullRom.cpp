@@ -99,12 +99,8 @@ void CatmullRom::CreateScene()
     planeNode->SetScale(Vector3(200.0f,0.0f, 200.0f));
     StaticModel* planeObject = planeNode->CreateComponent<StaticModel>();
     planeObject->SetModel(cache_->GetResource<Model>("Models/Plane.mdl"));
-    planeObject->SetMaterial(cache_->GetResource<Material>("Materials/Grids/GridBlue+.xml"));
-//   Urho3D::SharedPtr<Urho3D::Texture2D> texture (new Urho3D::Texture2D(context_));
-//   texture->SetSize(width(),height(),Urho3D::Graphics::GetRGBAFormat(),Urho3D::TEXTURE_STATIC);
-//   texture->SetData(0,0,0,512,512,cache->GetResource<Image>("Textures/Grids/gridBlue512.png"));    Urho3D::SharedPtr<Urho3D::Material> material(new Urho3D::Material(context_));
-//    material->SetTexture(TU_DIFFUSE, texture);
-//    planeObject->SetMaterial(0,material);
+  //  planeObject->SetMaterial(cache_->GetResource<Material>("Materials/Grids/GridBlue+.xml"));
+
 
 
 
@@ -139,18 +135,6 @@ void CatmullRom::CreateScene()
     jackNode_->SetScale(9.0f);
 
 
-
-
-
-
-   // bounds_ = BoundingBox (Vector3(-100.0f, 0.0f, -100.0f), Vector3(100.0f, 0.0f, 100.0f));
-   // mover = jackNode_->CreateComponent<Mover>();
-   // mover->SetParameters(0.0f, 0.0f, bounds_, gType_, 0.0f, 0.0f);
-
-
-
-
-
     // Create the camera. Limit far clip distance to match the fog
     cameraNode_ = scene_->CreateChild("Camera");
     cameraNode_->SetName("WheelsCamera");
@@ -174,23 +158,6 @@ void CatmullRom::CreateScene()
     modelObject->SetCastShadows(true);
 
     bounds_ = BoundingBox (Vector3(-100.0f, 0.0f, -100.0f), Vector3(100.0f, 0.0f, 100.0f));
-   // mover = jackNode_->CreateComponent<Mover>();
-   // mover->SetParameters(0.0f, 0.0f, bounds_, gType_, 0.0f, 0.0f);
-
-
-
-//    Animation* walkAnimation = cache_->GetResource<Animation>("Models/Jack_Walk.ani");
-
-//    AnimationState* state = modelObject->AddAnimationState(walkAnimation);
-//    // The state would fail to create (return null) if the animation was not found
-//    if (state)
-//    {
-//        // Enable full blending weight and looping
-//        state->SetWeight(1.0f);
-//        state->SetLooped(true);
-//        state->SetTime(Random(walkAnimation->GetLength()));
-//    }
-
 
     SubscribeToEvent(E_UPDATE, URHO3D_HANDLER(CatmullRom, HandleUpdate));
 
@@ -392,7 +359,7 @@ void CatmullRom::HandleUpdate(StringHash /*eventType*/, VariantMap& eventData)
     //if (!bStart_)
     MoveCamera(timeStep);
 
-    path_->Move (timeStep);
+    path_->Move(timeStep);
 
 
     //Jack Pos : X, Y \nCamera Pan, Tilt: Pan, Tilt \nCamera Pos X, Y: X, Y
